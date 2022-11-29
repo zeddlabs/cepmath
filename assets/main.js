@@ -89,7 +89,7 @@ bagiBtn.addEventListener("click", () => {
   soalMathField.cmd("\\div").focus();
 });
 pangkatDuaBtn.addEventListener("click", () => {
-  soalMathField.cmd("^{2}").focus();
+  soalMathField.write("^{2}").focus();
 });
 pangkatBtn.addEventListener("click", () => {
   soalMathField.cmd("^").focus();
