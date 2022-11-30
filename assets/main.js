@@ -1,7 +1,21 @@
 const MQ = MathQuill.getInterface(2);
+
 const soalSpan = document.getElementById("soal");
 const soalBtn = document.querySelector(".soal-btn");
 const hasilBox = document.getElementById("hasil");
+
+const xBtn = document.getElementById("x");
+const satuBtn = document.getElementById("satu");
+const duaBtn = document.getElementById("dua");
+const tigaBtn = document.getElementById("tiga");
+const empatBtn = document.getElementById("empat");
+const limaBtn = document.getElementById("lima");
+const enamBtn = document.getElementById("enam");
+const tujuhBtn = document.getElementById("tujuh");
+const delapanBtn = document.getElementById("delapan");
+const sembilanBtn = document.getElementById("sembilan");
+const nolBtn = document.getElementById("nol");
+const komaBtn = document.getElementById("koma");
 const tambahBtn = document.getElementById("tambah");
 const kurangBtn = document.getElementById("kurang");
 const kaliBtn = document.getElementById("kali");
@@ -13,12 +27,6 @@ const akarNthBtn = document.getElementById("akarNth");
 const perBtn = document.getElementById("per");
 const piBtn = document.getElementById("pi");
 const kurungBtn = document.getElementById("kurung");
-const sinBtn = document.getElementById("sin");
-const cosBtn = document.getElementById("cos");
-const tanBtn = document.getElementById("tan");
-const cotBtn = document.getElementById("cot");
-const cscBtn = document.getElementById("csc");
-const secBtn = document.getElementById("sec");
 
 let enteredMath = "";
 const soalMathField = MQ.MathField(soalSpan, {
@@ -33,14 +41,37 @@ const hasilMathField = MQ.StaticMath(hasilBox);
 
 soalBtn.addEventListener("click", () => {
   const latexStr = latex_to_js(enteredMath);
-  const hasil = math.derivative(latexStr, "x").toString();
+  const hasil = math.derivative(latexStr, "x", {simplify: true}).toString();
   let hasilLtx = math.parse(hasil).toTex();
   hasilLtx.replace(/\\/g, "\\\\");
   const hasilFinal = hasilLtx.replace(/\\cdot/g, "");
-  console.log(hasilFinal);
   hasilMathField.latex(hasilFinal);
 });
 
+const xBtnMF = MQ.StaticMath(xBtn);
+xBtnMF.latex("x");
+const satuBtnMF = MQ.StaticMath(satuBtn);
+satuBtnMF.latex("1");
+const duaBtnMF = MQ.StaticMath(duaBtn);
+duaBtnMF.latex("2");
+const tigaBtnMF = MQ.StaticMath(tigaBtn);
+tigaBtnMF.latex("3");
+const empatBtnMF = MQ.StaticMath(empatBtn);
+empatBtnMF.latex("4");
+const limaBtnMF = MQ.StaticMath(limaBtn);
+limaBtnMF.latex("5");
+const enamBtnMF = MQ.StaticMath(enamBtn);
+enamBtnMF.latex("6");
+const tujuhBtnMF = MQ.StaticMath(tujuhBtn);
+tujuhBtnMF.latex("7");
+const delapanBtnMF = MQ.StaticMath(delapanBtn);
+delapanBtnMF.latex("8");
+const sembilanBtnMF = MQ.StaticMath(sembilanBtn);
+sembilanBtnMF.latex("9");
+const nolBtnMF = MQ.StaticMath(nolBtn);
+nolBtnMF.latex("0");
+const komaBtnMF = MQ.StaticMath(komaBtn);
+komaBtnMF.latex(".");
 const tambahBtnMF = MQ.StaticMath(tambahBtn);
 tambahBtnMF.latex("+");
 const kurangBtnMF = MQ.StaticMath(kurangBtn);
@@ -63,24 +94,48 @@ const piBtnMF = MQ.StaticMath(piBtn);
 piBtnMF.latex("\\pi");
 const kurungBtnMF = MQ.StaticMath(kurungBtn);
 kurungBtnMF.latex("\\left(☐\\right)");
-const sinBtnMF = MQ.StaticMath(sinBtn);
-sinBtnMF.latex("\\sin");
-const cosBtnMF = MQ.StaticMath(cosBtn);
-cosBtnMF.latex("\\cos");
-const tanBtnMF = MQ.StaticMath(tanBtn);
-tanBtnMF.latex("\\tan");
-const cotBtnMF = MQ.StaticMath(cotBtn);
-cotBtnMF.latex("\\cot");
-const cscBtnMF = MQ.StaticMath(cscBtn);
-cscBtnMF.latex("\\csc");
-const secBtnMF = MQ.StaticMath(secBtn);
-secBtnMF.latex("\\sec");
 
+xBtn.addEventListener("click", () => {
+  soalMathField.write("x").focus();
+});
+satuBtn.addEventListener("click", () => {
+  soalMathField.write("1").focus();
+});
+duaBtn.addEventListener("click", () => {
+  soalMathField.write("2").focus();
+});
+tigaBtn.addEventListener("click", () => {
+  soalMathField.write("3").focus();
+});
+empatBtn.addEventListener("click", () => {
+  soalMathField.write("4").focus();
+});
+limaBtn.addEventListener("click", () => {
+  soalMathField.write("5").focus();
+});
+enamBtn.addEventListener("click", () => {
+  soalMathField.write("6").focus();
+});
+tujuhBtn.addEventListener("click", () => {
+  soalMathField.write("7").focus();
+});
+delapanBtn.addEventListener("click", () => {
+  soalMathField.write("8").focus();
+});
+sembilanBtn.addEventListener("click", () => {
+  soalMathField.write("9").focus();
+});
+nolBtn.addEventListener("click", () => {
+  soalMathField.write("0").focus();
+});
+komaBtn.addEventListener("click", () => {
+  soalMathField.write(".").focus();
+});
 tambahBtn.addEventListener("click", () => {
-  soalMathField.cmd("+").focus();
+  soalMathField.write("+").focus();
 });
 kurangBtn.addEventListener("click", () => {
-  soalMathField.cmd("-").focus();
+  soalMathField.write("-").focus();
 });
 kaliBtn.addEventListener("click", () => {
   soalMathField.cmd("\\times").focus();
@@ -108,22 +163,4 @@ piBtn.addEventListener("click", () => {
 });
 kurungBtn.addEventListener("click", () => {
   soalMathField.cmd("(").focus();
-});
-sinBtn.addEventListener("click", () => {
-  soalMathField.cmd("\\sin").focus();
-});
-cosBtn.addEventListener("click", () => {
-  soalMathField.cmd("\\cos").focus();
-});
-tanBtn.addEventListener("click", () => {
-  soalMathField.cmd("\\tan").focus();
-});
-cotBtn.addEventListener("click", () => {
-  soalMathField.cmd("\\cot").focus();
-});
-cscBtn.addEventListener("click", () => {
-  soalMathField.cmd("\\csc").focus();
-});
-secBtn.addEventListener("click", () => {
-  soalMathField.cmd("\\sec").focus();
 });
