@@ -21,6 +21,35 @@ body {
   padding-inline: 1rem;
 }
 
+.alert {
+  width: min(500px, calc(100%-2rem));
+  position: absolute;
+  background: var(--dark-color);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 1rem;
+  border-radius: .25rem;
+  text-align: center;
+  box-shadow: 0 0 0 100vmax rgba(0, 0, 0, .5);
+  z-index: 100;
+  border: 1px solid var(--light-color);
+}
+
+.alert h1 {
+  font-size: 1.25rem;
+  border-bottom: 1px solid var(--light-color);
+  padding-bottom: 1rem;
+}
+
+.alert p {
+  padding: 1rem 0;
+}
+
+.hidden {
+  display: none;
+}
+
 @media screen and (min-width: 516px) {
   .container {
     padding: 0;
@@ -37,6 +66,7 @@ header {
 
 .title {
   margin-bottom: .5rem;
+  font-style: italic;
 }
 
 .result-box {
@@ -83,7 +113,7 @@ header {
   border: none;
 }
 
-.soal-btn {
+.soal-btn, .alert button {
   background-color: #c1121f;
   font-family: "Poppins", sans-serif;
   color: var(--light-color);

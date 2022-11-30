@@ -1,8 +1,17 @@
+const alertBox = document.querySelector('.alert');
+const alertBtn = document.getElementById('alertBtn');
+alertBtn.addEventListener('click', () => {
+  alertBox.classList.add('hidden');
+})
+
 const MQ = MathQuill.getInterface(2);
 
 const soalSpan = document.getElementById("soal");
 const soalBtn = document.querySelector(".soal-btn");
 const hasilBox = document.getElementById("hasil");
+
+const alert1 = document.getElementById("alert1");
+const alert2 = document.getElementById("alert2");
 
 const xBtn = document.getElementById("x");
 const satuBtn = document.getElementById("satu");
@@ -47,6 +56,11 @@ soalBtn.addEventListener("click", () => {
   const hasilFinal = hasilLtx.replace(/\\cdot/g, "");
   hasilMathField.latex(hasilFinal);
 });
+
+const alert1MF = MQ.StaticMath(alert1);
+alert1MF.latex("4x^{2}");
+const alert2MF = MQ.StaticMath(alert2);
+alert2MF.latex("4\\left(x\\right)^{2}");
 
 const xBtnMF = MQ.StaticMath(xBtn);
 xBtnMF.latex("x");
