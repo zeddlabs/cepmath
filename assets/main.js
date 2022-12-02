@@ -51,7 +51,6 @@ const hasilMathField = MQ.StaticMath(hasilBox);
 soalBtn.addEventListener("click", () => {
   const latexStr = latex_to_js(enteredMath);
   let hasil = math.derivative(latexStr, "x").toString();
-  console.log(hasil);
   hasil = math.simplify(hasil).toString();
   let hasilLtx = math.parse(hasil).toTex();
   hasilLtx.replace(/\\/g, "\\\\");
